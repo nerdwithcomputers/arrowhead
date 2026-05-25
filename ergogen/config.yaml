@@ -1,0 +1,165 @@
+meta:
+  engine: 4.1.0
+units:
+  kx: u
+  ky: u
+  px: kx+2
+  py: ky+2 
+points:
+  mirror: &mirror
+    ref: matrix_inner_num
+    distance: 2.15kx
+  zones:
+    matrix:
+      anchor:
+        shift: [100,-100]
+      rotate: -15
+      columns:
+        outer:
+          key:
+            column_net: COL0
+            mirror:
+              column_net: COL11
+        pinky:
+          key:
+            column_net: COL1
+            mirror:
+              column_net: COL10
+        ring:
+          key:
+            stagger: 5
+            column_net: COL2
+            mirror:
+              column_net: COL9
+        middle:
+          key:
+            stagger: 2.5
+            column_net: COL3
+            mirror:
+              column_net: COL8
+        index:
+          key:
+            stagger: -2.5
+            column_net: COL4
+            mirror:
+              column_net: COL7
+        inner:
+          key:
+            stagger: -2.5
+            column_net: COL5
+            mirror:
+              column_net: COL6
+      rows:
+        mod:
+          key.row_net: ROW4
+        bottom:
+          key.row_net: ROW3
+        home:
+          key.row_net: ROW2
+        top:
+          key.row_net: ROW1
+        num:
+          key.row_net: ROW0
+    thumb:
+      # you really don't need to look at this, I swear
+      # this mess is entirely my fault, I made this more complicated than I needed to
+      key:
+        row_net: ROW5
+      anchor:
+        ref: matrix_inner_mod
+        shift: [0,-1.2ky]
+      columns:
+        outer:
+          rows.top.skip: true
+          key:
+            splay: -15
+        middle:
+          rows.top.key:
+            column_net: COL5
+            mirror:
+              column_net: COL6
+        inner:
+          rows.top.skip: true
+      rows:
+        bottom:
+          columns.outer.key:
+            column_net: COL2
+            mirror:
+              column_net: COL9
+          columns.middle.key:
+            column_net: COL3
+            mirror:
+              column_net: COL8
+          columns.inner.key:
+            column_net: COL4
+            mirror:
+              column_net: COL7
+        top:
+          key:
+            column_net: COL5
+            mirror:
+              column_net: COL6
+outlines:
+  raw-distinct:
+    - what: rectangle
+      where: true
+      size: [kx-0.5,ky-0.5]
+  raw:
+    - what: rectangle
+      where: true
+      size: [kx, ky]
+  board:
+    - what: polygon
+      operation: stack
+      fillet: 5
+      points:
+        - ref: matrix_outer_num
+          shift: [-0.6px, 0.6py]
+        - ref: matrix_middle_num
+          shift: [0, 0.6py]
+        - ref: matrix_inner_num
+          shift: [0, 0.6py]
+        - ref: mirror_matrix_inner_num
+          shift: [0,0.6py]
+        - ref: mirror_matrix_middle_num
+          shift: [0, 0.6py]
+        - ref: mirror_matrix_outer_num
+          shift: [-0.6px, 0.6py]
+        - ref: mirror_matrix_outer_mod
+          shift: [-0.6px, -0.6py]
+        - ref: mirror_matrix_pinky_mod
+          shift: [0,-0.6py]
+        # - ref: mirror_matrix_index_mod
+          # shift: [0, -0.5py]
+        - ref: mirror_thumb_outer_bottom
+          shift: [-0.5px, -0.5py]
+        - ref: mirror_thumb_inner_bottom
+          shift: [0.5px, -0.5py]
+        - ref: thumb_inner_bottom
+          shift: [0.5px, -0.5py]
+        - ref: thumb_outer_bottom
+          shift: [-0.5px, -0.5py]
+        # - ref: matrix_index_mod
+          # shift: [0, -0.5py]
+        - ref: matrix_pinky_mod
+          shift: [0,-0.6py]
+        - ref: matrix_outer_mod
+          shift: [-0.6px, -0.6py]
+  combo:
+    - name: board
+    - operation: subtract
+      name: raw
+pcbs:
+  arrowhead:
+    outlines:
+      main:
+        outline: combo
+        # footprints:
+        #   mx_hotswap:
+        #     what: mx
+        #     where: true
+        #     params:
+        #       keycaps: true
+        #       reverse: false
+        #       hotswap: true
+cases:
