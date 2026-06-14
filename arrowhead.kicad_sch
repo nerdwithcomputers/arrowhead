@@ -20160,7 +20160,8 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 72.39 163.83 90)
+		(at 72.39 163.83 270)
+		(mirror x)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -20168,10 +20169,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "cd15c9c4-0ee5-4be0-aebe-ca18c53c6a4c")
 		(property "Reference" "D69"
-			(at 76.2 164.1474 90)
+			(at 68.58 164.1474 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -20182,7 +20182,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 76.2 166.6874 90)
+			(at 68.58 166.6874 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -20192,7 +20192,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
 			(at 72.39 163.83 0)
 			(hide yes)
 			(show_name no)
